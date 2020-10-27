@@ -64,6 +64,10 @@ public class LiteralExamples {
         String multipleCharacters;
 
         multipleCharacters = "Hier steht \t ein \"Text\" aus\nvielen Zeichen! \u2764";
-        System.out.println(multipleCharacters); // Ausgabe: Hier steht ein "Text" aus vielen Zeichen!
+        System.out.println(multipleCharacters);
+        /* Ausgabe:
+        Hier steht 	 ein "Text" aus
+        vielen Zeichen! ❤
+        */
     }
 }
