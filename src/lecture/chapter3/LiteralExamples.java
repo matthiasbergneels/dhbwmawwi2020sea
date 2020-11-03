@@ -9,11 +9,12 @@ public class LiteralExamples {
         // Ganzzahlen Literale
 
         // Dezimalliteral --> Zahlen 0 - 9
-        numberA = 153;
+        numberA = 78;
         System.out.println(numberA); // Ausgabe: 153
 
         // Oktalliteral --> präfix 0 Zahlen 0-7
         numberA = 071;
+        //numberA = 57;
         System.out.println(numberA); // Ausgabe: 57 (7*8^1+1*8^0)
 
         // Hexadezimalliteral --> präfix 0x Zahlen 0-9 & Buchstaben A-F
@@ -63,7 +64,7 @@ public class LiteralExamples {
 
         String multipleCharacters;
 
-        multipleCharacters = "Hier steht \t ein \"Text\" aus\nvielen Zeichen! \u2764";
+        multipleCharacters = "Hier steht \t ein \"Text\" aus\nvielen Zeichen! \u2764 \ud83d\udc3b";
         System.out.println(multipleCharacters);
         /* Ausgabe:
         Hier steht 	 ein "Text" aus
