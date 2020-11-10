@@ -23,6 +23,19 @@ public class ArrayExamples {
 
         System.out.println(numbers.length);
 
+        System.out.println("Ausgabe gesamtes numbers Array mit for Schleife:");
+        for(int i = 0; i < numbers.length; i++){
+            System.out.println("Index " + i + ":" + numbers[i]);
+        }
+
+        System.out.println("Ausgabe gesamtes numbers Array mit while Schleife:");
+        int numbersIndex = 0;
+
+        while (numbersIndex < numbers.length){
+            System.out.println("Index " + numbersIndex + ":" + numbers[numbersIndex]);
+            numbersIndex++;
+        }
+
         // initialisiert ein neues Array
         numbers = new int[11];
 
@@ -58,6 +71,14 @@ public class ArrayExamples {
         sentences[1][0] = "Ich";
         sentences[1][1] = "hab";
         sentences[1][2] = "hunger";
+
+
+        for(int i = 0; i < sentences.length; i++){
+            for(int j = 0; j < sentences[i].length; j++){
+                System.out.print(sentences[i][j] + " ");
+            }
+            System.out.println();
+        }
 
 
         char[][] tictactoe = new char[3][3];

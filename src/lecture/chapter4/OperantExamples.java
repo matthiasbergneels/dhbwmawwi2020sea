@@ -110,6 +110,12 @@ public class OperantExamples {
         output = (isTired && isAtHome) ? "Ich gehe ins Bett!" : "Ich muss wach bleiben!";
         System.out.println(output);
 
+        if(isTired && isAtHome){
+            output = "Ich gehe ins Bett!";
+        }else{
+            output = "Ich muss wach bleiben!";
+        }
+
 
         // String-Verkettung
 
