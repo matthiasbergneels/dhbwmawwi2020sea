@@ -5,7 +5,7 @@ public class Ggt {
     public static void main(String[] args) {
 
         int numberA = 245;
-        int numberB = 0;
+        int numberB = 63;
 
         while(numberA != numberB){
             if(numberA > numberB){
