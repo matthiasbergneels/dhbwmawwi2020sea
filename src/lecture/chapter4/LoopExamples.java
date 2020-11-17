@@ -33,7 +33,7 @@ public class LoopExamples {
 
         // Zähler-Schleife (for)
         System.out.println("For Schleife 0 - 10:");
-        for(int i = 0; i <= 10; i++){
+        for(int i = 0; i > -100; i-=2){
             System.out.println(i);
         }
 
