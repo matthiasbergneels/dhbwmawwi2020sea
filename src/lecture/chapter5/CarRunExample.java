@@ -12,9 +12,11 @@ public class CarRunExample {
 
         // erzeugen eines Car Objektes (Instanz) und referenzieren
         // in der Variable myCar
-        myCar = new Car("MA XY-1234", "RED", 160);
+        myCar = new Car("MA XY-1234", "RED", 160, Car.Brands.TESLA);
 
         System.out.println("Es gibt " + Car.getCarCounter() + " Autos.");
+
+
 
         // interagieren mit dem Objekt (Instanz)
         // über Referenzvariable "myCar" --> Methoden
@@ -25,6 +27,7 @@ public class CarRunExample {
         System.out.println("myCar, Leistung: " + myCar.getHorsePower());
         System.out.println("myCar, Farbe: " + myCar.getColor());
         System.out.println("myCar, Nummernschild: " + myCar.getLicensePlate());
+        System.out.println("myCar, Marke: " + myCar.brand);
 
         myCar.setColor("kack-braun");
         myCar.setHorsePower(550);
@@ -36,7 +39,7 @@ public class CarRunExample {
 
 
         // neues Objekt (Instanz) von Typ "Car" (Auto)
-        yourCar = new Car("HD MM-9876", "green", 99);
+        yourCar = new Car("HD MM-9876", "green", 99, Car.Brands.FORD);
 
         System.out.println("Es gibt " + Car.getCarCounter() + " Autos.");
 
@@ -58,11 +61,11 @@ public class CarRunExample {
 
 
         Car carOne = new Car("HD-XY 5678",
-                "GREEN", 150);
+                "GREEN", 150, Car.Brands.MERCEDES);
         Car carTwo = new Car("MA-ZZ 5672",
-                "RED", 200);
+                "RED", 200, Car.Brands.MERCEDES);
         Car carThree = new Car("HD-XY 5678",
-                "GREEN", 150);
+                "GREEN", 150, Car.Brands.MERCEDES);
         Car carFour = carTwo;  // Call by Reference (!)
 
 
@@ -75,5 +78,32 @@ public class CarRunExample {
         System.out.println("Es gibt " + Car.getCarCounter() + " Autos.");
 
         System.out.println("Es gibt " + myCar.getCarCounter() + " Autos.");
+
+
+        // Garbage Collector
+
+        // --> altes Objekt von myCar wird "unreachable" wenn
+        // ein neues Objekt erzeugt wird und in der
+        // Referenzvariable gespeichert wird
+        myCar = new Car("HD-HH 5728", "RED",
+                299, Car.Brands.FORD);
+
+        // Besser: Referenzvariable initialisieren mit null
+        myCar = null;
+        yourCar = null;
+        carTwo = null;
+
+        //myCar.accelerate(50.0);
+
+        // Bitte an den Garbage Collector um aufzuräumen
+        System.gc();
+
+        try {
+            Thread.sleep(5000);
+        }catch(Exception e){
+            System.out.println("Schlafen ist schief gegangen!");
+        }
+
+        System.out.println("Es gibt " + Car.getCarCounter() + " Autos.");
     }
 }

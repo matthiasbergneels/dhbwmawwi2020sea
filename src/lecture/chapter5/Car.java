@@ -2,10 +2,20 @@ package lecture.chapter5;
 
 public class Car {
 
+    // innere Enumeration (geschachtelt)
+    public enum Brands{
+        MERCEDES,
+        BMW,
+        DACIA,
+        FORD,
+        TESLA
+    }
+
     // Attribute (Eigenschaften) für Objekte des Typs "Car" (Auto)
     private String color;           // --> private: nur innerhalb der Klasse / Objekt
     private String licensePlate;
     private int horsePower;
+    public final Brands brand;
     private double currentSpeed;
 
     public static final String[] ALLOWED_COLOR = {"BLACK", "RED", "GREEN", "PURPEL"};
@@ -20,12 +30,13 @@ public class Car {
     // + public: Überall Sichtbar
 
     // Konstruktor für "Car"
-    public Car(String licensePlate, String color, int horsePower){
+    public Car(String licensePlate, String color, int horsePower, Brands brand){
 
         // DRY --> Don't repeat yourself --> wiederverwenden von Code über Methoden
         this.setColor(color);
         this.setLicensePlate(licensePlate);
         this.setHorsePower(horsePower);
+        this.brand = brand;
         this.currentSpeed = 0.0;
         carCounter++;
     }
@@ -98,4 +109,8 @@ public class Car {
         return carCounter;
     }
 
+    protected void finalize() {
+        carCounter--;
+        System.out.println("Das Auto " + this.licensePlate + " wird verschrottet!");
+    }
 }
