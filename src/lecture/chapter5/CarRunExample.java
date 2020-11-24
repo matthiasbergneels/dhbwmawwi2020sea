@@ -92,6 +92,7 @@ public class CarRunExample {
         myCar = null;
         yourCar = null;
         carTwo = null;
+        carFour = null;
 
         //myCar.accelerate(50.0);
 
@@ -99,7 +100,8 @@ public class CarRunExample {
         System.gc();
 
         try {
-            Thread.sleep(5000);
+            // Warten, dass der Garbage Collector aufräumen kann
+            Thread.sleep(1000);
         }catch(Exception e){
             System.out.println("Schlafen ist schief gegangen!");
         }
