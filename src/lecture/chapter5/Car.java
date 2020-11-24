@@ -8,6 +8,11 @@ public class Car {
     private int horsePower;
     private double currentSpeed;
 
+    public static final String[] ALLOWED_COLOR = {"BLACK", "RED", "GREEN", "PURPEL"};
+
+    // privates Klassenattribut zum zählen der Autos
+    private static int carCounter;
+
     // Sichtbarkeits-Modifier für Attribute / Methoden (/ Klasse)
     // - private: Sichtbar innerhalb Klasse / Objekt
     //   default: Sichtbar innherlab des Pakets (Java package)
@@ -15,24 +20,25 @@ public class Car {
     // + public: Überall Sichtbar
 
     // Konstruktor für "Car"
-    public Car(String parameterLicensePlate, String parameterColor, int parameterHorsePower){
+    public Car(String licensePlate, String color, int horsePower){
 
-        // DRY --> Don't repeat yourself --> wiederverwend von Code über Methoden
-        setColor(parameterColor);
-        setLicensePlate(parameterLicensePlate);
-        setHorsePower(parameterHorsePower);
-        currentSpeed = 0.0;
+        // DRY --> Don't repeat yourself --> wiederverwenden von Code über Methoden
+        this.setColor(color);
+        this.setLicensePlate(licensePlate);
+        this.setHorsePower(horsePower);
+        this.currentSpeed = 0.0;
+        carCounter++;
     }
 
     // Methoden (Verhalten) für Objekte des Typs "Car" (Auto)
     public void accelerate(double speedDelta){
-        currentSpeed = currentSpeed + speedDelta;
-        System.out.println("Das Auto fährt " + currentSpeed + " km/h");
+        this.currentSpeed = this.currentSpeed + speedDelta;
+        System.out.println("Das Auto fährt " + this.currentSpeed + " km/h");
     }
 
     public void brake(double speedDelta){
-        currentSpeed = currentSpeed - speedDelta;
-        System.out.println("Das Auto fährt " + currentSpeed + " km/h");
+        this.currentSpeed = this.currentSpeed - speedDelta;
+        System.out.println("Das Auto fährt " + this.currentSpeed + " km/h");
     }
 
     // Getter- / Setter-Methoden
@@ -55,7 +61,15 @@ public class Car {
     }
 
     // Kapselung --> Schreib-Zugriff Attribute über set-Methoden
-    public void setColor(String parameterColor){
+    public void setColor(String color){
+        this.color = ALLOWED_COLOR[0];
+        for(int i = 0; i < ALLOWED_COLOR.length; i++){
+            if(color.equals(ALLOWED_COLOR[i])){
+                this.color = color;
+                break;
+            }
+        }
+        /*
         if(parameterColor == "black" ||
             parameterColor == "red" ||
             parameterColor == "green"){
@@ -63,19 +77,25 @@ public class Car {
         }else{
             color = "black";
         }
+         */
     }
 
-    public void setHorsePower(int parameterHorsePower){
-        if(parameterHorsePower > 35 && parameterHorsePower < 500){
-            horsePower = parameterHorsePower;
+    public void setHorsePower(int horsePower){
+        if(horsePower > 35 && horsePower < 500){
+            this.horsePower = horsePower;
         }else{
-            horsePower = 100;
+            this.horsePower = 100;
         }
     }
 
-    private void setLicensePlate(String parameterLicensePlate){
-        // TODO: Plausibilitätscheck für Nummernschilder
-        licensePlate = parameterLicensePlate;
+    private void setLicensePlate(String licensePlate){
+        // TODO: Plausibilitätscheck für Nummernschilder z.B. REGEX ("XX-XX #####")
+        this.licensePlate = licensePlate;
+    }
+
+
+    public static int getCarCounter(){
+        return carCounter;
     }
 
 }
