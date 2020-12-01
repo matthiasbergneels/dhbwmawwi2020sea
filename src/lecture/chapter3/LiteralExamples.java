@@ -19,7 +19,7 @@ public class LiteralExamples {
 
         // Hexadezimalliteral --> präfix 0x Zahlen 0-9 & Buchstaben A-F
         numberA = 0x1A;
-        System.out.println(numberA); // Ausgabe: 26 (1*16^1+10*16^0)
+        System.out.println(numberA); // Ausgabe: 26 (1*16^1+10(A)*16^0)
 
         // Binärliteral --> präfix 0b Zahlen 0 & 1
         numberA = 0b11;

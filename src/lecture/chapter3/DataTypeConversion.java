@@ -7,12 +7,12 @@ public class DataTypeConversion {
         byte numberA = 50;
         int numberB;
 
-        // implizite Typumwandlung (von short zu int) / implicit type cast
+        // implizite Typumwandlung (von byte zu int) / implicit type cast
         numberB = numberA; // --> numberB = 50;
 
         numberB = 130;
 
-        //  explizite Typumwandlung (bsp. von int zu short) / explicit type cast --> cast operator "()"
+        //  explizite Typumwandlung (bsp. von int zu byte) / explicit type cast --> cast operator "()"
         numberA = (byte)numberB;
 
 

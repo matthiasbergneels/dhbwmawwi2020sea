@@ -1,6 +1,8 @@
 package lecture.chapter6;
 
-public class Dog extends Animal{
+import lecture.chapter5.Car;
+
+public class Dog extends Animal {
 
     private String breed;
 
