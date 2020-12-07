@@ -1,4 +1,4 @@
-package excercises.chapter5;
+package excercises.chapter5.bahnhof;
 
 public class Zuglokomotive {
     private Gueterzug zug;
