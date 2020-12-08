@@ -2,7 +2,7 @@ package lecture.chapter6;
 
 import lecture.chapter5.Car;
 
-public class Dog extends Animal {
+public final class Dog extends Animal {
 
     private String breed;
 
@@ -19,9 +19,28 @@ public class Dog extends Animal {
         return breed;
     }
 
+    /*
+    public void move(){ --> final Methoden können nicht überschrieben werden.
+
+    }
+    */
+
+    public void eat(){
+        super.eat();
+        System.out.println("... und frisst Fleisch!");
+    }
+
+    @Override
+    public void breath(){
+        System.out.println("Der Hund " + getDescription() + " atmet! *hechel* ");
+    }
+
     public void setBreed(String breed) {
         this.breed = breed;
     }
 
 
+    public String toString(){
+        return super.toString() + "; Rasse: " + getBreed();
+    }
 }
