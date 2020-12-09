@@ -28,6 +28,17 @@ public class Gueterwagon {
         }
     }
 
+    public double getGesamtFrachtVolumen(){
+        double gesamtFrachtVolumen = 0;
+
+        for(Fracht aktuelleFracht: fracht){
+            // Hier versteckt sich Polymorphy ;-)
+            gesamtFrachtVolumen += aktuelleFracht.getVolumen();
+        }
+
+        return gesamtFrachtVolumen;
+    }
+
     public double getMaxLast() {
         return maxLast;
     }

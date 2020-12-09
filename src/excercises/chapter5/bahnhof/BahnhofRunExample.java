@@ -39,6 +39,10 @@ public class BahnhofRunExample {
             System.out.println("Aktuelles Volumen: " + aktuelleFracht.getVolumen());
         }
 
+
+        // Finde die Polymorphy ;-)
+        System.out.println("Gesamt Fracht-Volumen des Güterzuges: " + meinZug.getGesamtFrachtVolumen() + " m^3");
+
         System.out.println("Informationen über meinZug:");
         System.out.println("Gueterzug: " + meinZug.getAnzWagons() + meinZug.getNummer());
         System.out.println("Fahrer: " + meinZug.getFahrer().getName() + ", " + meinZug.getFahrer().getVorname());

@@ -112,6 +112,17 @@ public class Gueterzug {
         this.anzWagons = anzWagons;
     }
 
+    public double getGesamtFrachtVolumen(){
+        double gesamtFrachtVolumen = 0;
+
+        for(Gueterwagon aktuellerWagon : wagons){
+            // Hier versteckt sich Polymorphy ;-)
+            gesamtFrachtVolumen += aktuellerWagon.getGesamtFrachtVolumen();
+        }
+
+        return gesamtFrachtVolumen;
+    }
+
     private static Gueterwagon[] erzeugeWagons(int anzahl){
         Gueterwagon[] wagons = new Gueterwagon[anzahl];
         for(int i = 0; i < wagons.length; i++){
