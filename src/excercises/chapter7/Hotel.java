@@ -10,6 +10,12 @@ public class Hotel implements Bookable{
         this.bookedRoomCount = 0;
     }
 
+
+    public void clean (){
+        System.out.println("und ich wisch, wisch, wisch... ");
+    }
+
+
     @Override
     public int freeSlots(){
         return roomCount - bookedRoomCount;
