@@ -116,7 +116,6 @@ public class Gueterzug {
         double gesamtFrachtVolumen = 0;
 
         for(Gueterwagon aktuellerWagon : wagons){
-            // Hier versteckt sich Polymorphy ;-)
             gesamtFrachtVolumen += aktuellerWagon.getGesamtFrachtVolumen();
         }
 
