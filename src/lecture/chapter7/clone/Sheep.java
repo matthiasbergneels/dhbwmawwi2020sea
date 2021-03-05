@@ -1,4 +1,4 @@
-package excercises.chapter7.clone;
+package lecture.chapter7.clone;
 
 public class Sheep implements Cloneable{
 

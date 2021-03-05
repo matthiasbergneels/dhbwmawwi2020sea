@@ -1,4 +1,6 @@
-package excercises.chapter7;
+package lecture.chapter7;
+
+import lecture.chapter8.NotEnoughFreeSlots;
 
 public class Hotel implements Bookable{
 
@@ -22,12 +24,11 @@ public class Hotel implements Bookable{
     }
 
     @Override
-    public boolean book(int slots){
+    public void bookSlot(int slots) throws NotEnoughFreeSlots {
         if(freeSlots() >= slots){
             bookedRoomCount += slots;
-            return true;
+        }else{
+            throw new NotEnoughFreeSlots(slots, freeSlots());
         }
-
-        return false;
     }
 }
