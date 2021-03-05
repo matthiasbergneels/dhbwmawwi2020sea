@@ -1,4 +1,4 @@
-package excercises.exkurs.junit;
+package lecture.excursion.junit;
 
 public class Calculator {
 
@@ -6,7 +6,7 @@ public class Calculator {
         return numberA + numberB;
     }
 
-    public double substract(double numberA, double numberB){
+    public double subtract(double numberA, double numberB){
         return numberA - numberB;
     }
 
