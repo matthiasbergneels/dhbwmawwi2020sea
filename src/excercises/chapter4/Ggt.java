@@ -7,6 +7,13 @@ public class Ggt {
         int numberA = 245;
         int numberB = 63;
 
+        numberA = calculateGgt(numberA, numberB);
+
+        System.out.println("Der GGT ist: " + numberA);
+
+    }
+
+    public static int calculateGgt(int numberA, int numberB) {
         while(numberA != numberB){
             if(numberA > numberB){
                 numberA = numberA - numberB;
@@ -15,8 +22,6 @@ public class Ggt {
                 numberB = numberB - numberA;
             }
         }
-
-        System.out.println("Der GGT ist: " + numberA);
-
+        return numberA;
     }
 }

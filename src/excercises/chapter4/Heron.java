@@ -4,7 +4,15 @@ public class Heron {
 
     public static void main(String[] args) {
 
-        double startValue = 24;
+        double startValue = 121;
+
+        double squareRootResult = calculateSquareRootWithHeron(startValue, 0.00001);
+
+        System.out.println("Die Wurzel aus " + startValue + " ist ca. " + squareRootResult);
+
+    }
+
+    public static double calculateSquareRootWithHeron(double startValue, double precision) {
         double interimSolutionA = startValue;
         double interimSolutionB = 0;
 
@@ -13,16 +21,10 @@ public class Heron {
                 interimSolutionA = interimSolutionB;
             }
             interimSolutionB = (interimSolutionA + startValue / interimSolutionA) / 2;
-            System.out.println("Zwischenergebnis: " + interimSolutionB);
+            //System.out.println("Zwischenergebnis: " + interimSolutionB);
 
-        }while((interimSolutionA - interimSolutionB) > 0.00001);
+        }while((interimSolutionA - interimSolutionB) > precision);
 
-        System.out.println("Die Wurzel aus " + startValue + " ist ca. " + interimSolutionB);
-
-
-
-
-
-
+        return interimSolutionB;
     }
 }
