@@ -23,7 +23,6 @@ class HotelTest {
         });
 
         assertEquals(100, notEnoughFreeSlots.freeSlots);
-
     }
 
     @Test

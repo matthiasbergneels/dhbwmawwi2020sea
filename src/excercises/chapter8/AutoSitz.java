@@ -30,9 +30,11 @@ public class AutoSitz {
 
     public AutoSitz(boolean ledersitz, SeatColor farbe) throws FalscheParameter {
 
-        if(ledersitz && !(farbe == SeatColor.WHITE || farbe == SeatColor.BLACK)){
+
+        if (ledersitz && !(farbe == SeatColor.WHITE || farbe == SeatColor.BLACK)) {
             throw new FalscheParameter(ledersitz, farbe);
         }
+
 
         this.setFarbe(farbe);
         this.setLedersitz(ledersitz);
