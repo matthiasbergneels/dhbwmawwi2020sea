@@ -45,8 +45,18 @@ public class Student implements Comparable<Student> {
         this.age = age;
     }
 
+    // Natürliche Ordnung nach 1. Matrikel#, 2. Nachname, 3. Vorname
     @Override
     public int compareTo(Student o) {
-        return this.getStudentId() - o.getStudentId();
+
+        if(this.getStudentId() != o.getStudentId()){
+            return this.getStudentId() - o.getStudentId();
+        }
+
+        if(!this.getFamilyName().equals(o.getFamilyName())){
+            return this.getFamilyName().compareTo(o.getFamilyName());
+        }
+
+        return this.getName().compareTo(o.getName());
     }
 }
