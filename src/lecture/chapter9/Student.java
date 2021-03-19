@@ -64,4 +64,48 @@ public class Student implements Comparable<Student> {
     public String toString() {
         return studentId + ": " + familyName + ", " + name + "; " + age;
     }
+
+    @Override
+    public boolean equals(Object o){
+        // alias Check
+        if(this == o){
+            return true;
+        }
+
+        // not null check
+        if(o == null){
+            return false;
+        }
+
+        // typ check --> wäre auch mit instance of möglich
+        if(this.getClass() != o.getClass()){
+            return false;
+        }
+
+        // Feld (Attribut) Vergleich
+        Student s = (Student)o;
+
+        if(this.getStudentId() != s.getStudentId()){
+            return false;
+        }
+
+        if(!this.getFamilyName().equals(s.getFamilyName())){
+            return false;
+        }
+
+        if(!this.getName().equals(s.getName())){
+            return false;
+        }
+
+        if(this.getAge() != s.getAge()){
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode(){
+        return this.getStudentId() ^ this.getFamilyName().hashCode() ^ this.getName().hashCode() ^ this.getAge();
+    }
 }
