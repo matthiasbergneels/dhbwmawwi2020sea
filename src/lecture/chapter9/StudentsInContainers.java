@@ -19,16 +19,16 @@ public class StudentsInContainers {
 
         // Vergleichen von Objekten
         System.out.println("Alias Vergleich mit ==");
-        System.out.println("Unterschiedliche Objekte, unterschiedlicher Inhalt: "+(student1 == student3)); // --> false
-        System.out.println(student3 == student3); // --> true
-        System.out.println(student4 == student3); // --> true
-        System.out.println(student1 == student2); // --> false
+        System.out.println("Unterschiedliche Objekte, unterschiedlicher Inhalt: "+(student1 == student3));      // --> false
+        System.out.println("identisches Objekt mit gleicher Referenz: "+(student3 == student3));                // --> true
+        System.out.println("identisches Objekt mit verschiedenen Referenzen: "+(student4 == student3));         // --> true
+        System.out.println("Unterschiedliche Objekte, identischer Inhalt: "+(student1 == student2));            // --> false
 
         System.out.println("Vergleich mit Equals:");
-        System.out.println(student1.equals(student3)); // --> false
-        System.out.println(student3.equals(student3)); // --> true
-        System.out.println(student4.equals(student3)); // --> true
-        System.out.println(student1.equals(student2)); // --> true
+        System.out.println("Unterschiedliche Objekte, unterschiedlicher Inhalt: "+(student1.equals(student3)));     // --> false
+        System.out.println("identisches Objekt mit gleicher Referenz: "+(student3.equals(student3)));               // --> true
+        System.out.println("identisches Objekt mit verschiedenen Referenzen: "+(student4.equals(student3)));        // --> true
+        System.out.println("Unterschiedliche Objekte, identischer Inhalt: "+(student1.equals(student2)));           // --> true
 
         System.out.println("HashCode() Werte:");
         System.out.println(student1.hashCode());
@@ -95,7 +95,7 @@ public class StudentsInContainers {
 
         System.out.println("Hash Student Set: ");
         for(Student myStudent : myHashStudentSet){
-            System.out.println(myStudent + ": " + myStudent.hashCode());
+            System.out.println(myStudent + " - HashWert: " + myStudent.hashCode());
         }
 
     }

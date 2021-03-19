@@ -66,7 +66,7 @@ public class Student implements Comparable<Student> {
     }
 
 
-    /* --> selbst implementierte equals() und hashCode() Methode
+    // --> selbst implementierte equals() und hashCode() Methode
 
     @Override
     public boolean equals(Object o){
@@ -117,8 +117,8 @@ public class Student implements Comparable<Student> {
         return this.getStudentId() ^ this.getFamilyName().hashCode() ^ this.getName().hashCode();
     }
 
-    */
 
+    /* IntelliJ - generierte Equals und hashCode Methode
 
     @Override
     public boolean equals(Object o) {
@@ -139,4 +139,6 @@ public class Student implements Comparable<Student> {
         result = 31 * result + (familyName != null ? familyName.hashCode() : 0);
         return result;
     }
+
+     */
 }
