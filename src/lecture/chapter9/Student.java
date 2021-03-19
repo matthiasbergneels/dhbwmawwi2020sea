@@ -65,6 +65,9 @@ public class Student implements Comparable<Student> {
         return studentId + ": " + familyName + ", " + name + "; " + age;
     }
 
+
+    /* --> selbst implementierte equals() und hashCode() Methode
+
     @Override
     public boolean equals(Object o){
         // alias Check
@@ -96,16 +99,44 @@ public class Student implements Comparable<Student> {
         if(!this.getName().equals(s.getName())){
             return false;
         }
+        // --> konsistent zu compareTo()
+        //if(this.getAge() != s.getAge()){
+        //    return false;
+        //}
 
-        if(this.getAge() != s.getAge()){
-            return false;
-        }
+
 
         return true;
     }
 
     @Override
     public int hashCode(){
-        return this.getStudentId() ^ this.getFamilyName().hashCode() ^ this.getName().hashCode() ^ this.getAge();
+        // --> konsistent zu compareTo()
+        //return this.getStudentId() ^ this.getFamilyName().hashCode() ^ this.getName().hashCode() ^ this.getAge();
+
+        return this.getStudentId() ^ this.getFamilyName().hashCode() ^ this.getName().hashCode();
+    }
+
+    */
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (studentId != student.studentId) return false;
+        if (name != null ? !name.equals(student.name) : student.name != null) return false;
+        return familyName != null ? familyName.equals(student.familyName) : student.familyName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = studentId;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (familyName != null ? familyName.hashCode() : 0);
+        return result;
     }
 }

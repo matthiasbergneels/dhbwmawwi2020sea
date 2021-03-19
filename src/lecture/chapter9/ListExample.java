@@ -1,6 +1,7 @@
 package lecture.chapter9;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,6 +16,10 @@ public class ListExample {
         myNameList.add("Klaus");
         myNameList.add("Florian");
         myNameList.add("Klaus");
+        myNameList.add("Franz");
+        myNameList.add("Monika");
+        myNameList.add("Gernot");
+        myNameList.add("Matthias");
         //myNameList.add(new Student());
         //myNameList.add(new Bird(12.9f, "Tweety", 15.0f, true));
 
@@ -42,6 +47,26 @@ public class ListExample {
             }
         }
 
+
+
+        // Sortieren von Listen
+        Collections.sort(myNameList);
+
+        System.out.println("Namen alphabetisch sortiert (natürliche Ordnung)");
+        for(String name : myNameList){
+            System.out.println(name);
+        }
+
+        System.out.println("Namen sortiert nach Anzahl der Buchstaben");
+        Collections.sort(myNameList, (o1, o2) -> {
+            String name1 = (String)o1;
+            String name2 = (String)o2;
+
+            return name1.length() - name2.length();
+        });
+        for(String name : myNameList){
+            System.out.println(name);
+        }
 
         System.out.println("Anzahl Elemente: " + myNameList.size());
         System.out.println("Index 1 löschen: " + myNameList.remove(1));

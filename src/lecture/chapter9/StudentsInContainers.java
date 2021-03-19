@@ -1,6 +1,5 @@
 package lecture.chapter9;
 
-import java.sql.SQLOutput;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -19,13 +18,6 @@ public class StudentsInContainers {
         Student student4 = student3;
 
         // Vergleichen von Objekten
-
-        if(student1 == student3){
-            System.out.println("Die Studenten sind identisch");
-        }else{
-            System.out.println("Die Studenten sind nicht identisch");
-        }
-
         System.out.println("Alias Vergleich mit ==");
         System.out.println("Unterschiedliche Objekte, unterschiedlicher Inhalt: "+(student1 == student3)); // --> false
         System.out.println(student3 == student3); // --> true
@@ -103,7 +95,7 @@ public class StudentsInContainers {
 
         System.out.println("Hash Student Set: ");
         for(Student myStudent : myHashStudentSet){
-            System.out.println(myStudent);
+            System.out.println(myStudent + ": " + myStudent.hashCode());
         }
 
     }
