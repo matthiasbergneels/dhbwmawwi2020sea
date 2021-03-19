@@ -12,7 +12,7 @@ public class FlowLayoutExample extends JFrame {
         this.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         JLabel myLabel = new JLabel("Let's go to Mars");
-        JTextField myTextField = new JTextField(20);
+        JTextField myTextField = new JTextField(5);
         JButton myButton = new JButton("Send me to Mars!");
 
         this.add(myLabel);
