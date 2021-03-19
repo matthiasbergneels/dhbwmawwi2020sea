@@ -6,13 +6,11 @@ public class Kunde implements Comparable<Kunde>{
     private String vorname;
     private int kundenNummer;
 
-
     public Kunde(String name, String vorname, int kundenNummer){
         this.setName(name);
         this.setVorname(vorname);
         this.setKundenNummer(kundenNummer);
     }
-
 
     public String getName() {
         return name;
@@ -32,7 +30,6 @@ public class Kunde implements Comparable<Kunde>{
     public void setKundenNummer(int kundenNummer) {
         this.kundenNummer = kundenNummer;
     }
-
 
     @Override
     public int compareTo(Kunde o) {
@@ -66,10 +63,9 @@ public class Kunde implements Comparable<Kunde>{
         // Passend zu compareTo() Methode werden nur dort relevante Attribute verglichen
         Kunde kunde = (Kunde)obj;
 
-        if(!(this.getKundenNummer() == kunde.getKundenNummer())){
+        if(this.getKundenNummer() != kunde.getKundenNummer()){
             return false;
         }
-
 
         return true;
     }

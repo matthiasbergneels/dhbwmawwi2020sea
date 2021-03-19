@@ -12,7 +12,8 @@ public class TestKunde {
                 new Kunde("Beispiel", "Hans", 5180),
                 new Kunde("Mustermann", "Hilde", 4712),
                 new Kunde("Vorbild", "Theodor", 8278),
-                new Kunde("Dummy", "Jimmy", 1111)
+                new Kunde("Dummy", "Jimmy", 1111),
+                new Kunde("UMBENNEN", "Klaus", 4711),
         };
 
         // Aufgabe 1
@@ -39,9 +40,7 @@ public class TestKunde {
         List<Kunde> kundenVerzeichnisNachName = new Vector<Kunde>();
 
         // Initial angelegte Kunden in neues Kundenverzeichnis (Liste) übertragen
-        for(Kunde zuzuweisenderKunde : initialeKunden){
-            kundenVerzeichnisNachName.add(zuzuweisenderKunde);
-        }
+        kundenVerzeichnis.addAll(Arrays.asList(initialeKunden));
 
         // Sortieren der Liste nach spezifischer Sportiervorschrift
         Collections.sort(kundenVerzeichnisNachName, new KundenSortiererNachNameVornameKundennummer());;
@@ -53,9 +52,5 @@ public class TestKunde {
         while(kundenIterator.hasNext()){
             System.out.println(kundenIterator.next());
         }
-
-
-
     }
-
 }
