@@ -10,23 +10,23 @@ public class StudentsInContainers {
 
         Set<Student> myStudentSet = new TreeSet<Student>();
 
-        myStudentSet.add(new Student(12345, "Gabi", "Zeusfewef", 22));
+        myStudentSet.add(new Student(12345, "Gabi", "Zeus", 22));
         myStudentSet.add(new Student(98273, "Hans", "Mayer", 23));
         myStudentSet.add(new Student(73829, "Florian", "Frisch", 21));
-        myStudentSet.add(new Student(72112, "Gabi", "Zeus", 22));
+        myStudentSet.add(new Student(72112, "Gabi", "Zeus-Münster", 22));
         myStudentSet.add(new Student(93821, "Gabi", "Zeus", 22));
 
-        // Dublikat --> kein Dublikat nach neuer "natürlicher Ordnung"
-        myStudentSet.add(new Student(73829, "Florian2", "Frischewfas", 21));
+        // Dublikat --> kein Dublikat nach aktueller "natürlicher Ordnung"
+        myStudentSet.add(new Student(73829, "Florian2", "Frischer", 21));
         myStudentSet.add(new Student(12345, "Gabi", "Maus", 22));
 
-        // Dublikat --> auch nach neuer natürlicher Ordnung
-        myStudentSet.add(new Student(98273, "Hans", "Mayersdfsdf", 25));
+        // Dublikat --> auch nach aktueller natürlicher Ordnung
+        myStudentSet.add(new Student(98273, "Hans", "Mayer", 25));
 
         Iterator<Student> myStudentSetIterator = myStudentSet.iterator();
         while(myStudentSetIterator.hasNext()){
             Student myStudent = myStudentSetIterator.next();
-            System.out.println(myStudent.getStudentId() + ": " + myStudent.getFamilyName() + ", " + myStudent.getName());
+            System.out.println(myStudent);
         }
 
 
@@ -39,7 +39,7 @@ public class StudentsInContainers {
         myStudentSetByAge.addAll(myStudentSet);
 
         for(Student myStudent: myStudentSetByAge){
-            System.out.println(myStudent.getStudentId() + ": " + myStudent.getFamilyName() + ", " + myStudent.getName() + "; " + myStudent.getAge());
+            System.out.println(myStudent);
         }
 
 
@@ -55,11 +55,8 @@ public class StudentsInContainers {
         myStudentSetByAgeAndSigns.addAll(myStudentSet);
 
         for(Student myStudent: myStudentSetByAgeAndSigns){
-            System.out.println(myStudent.getStudentId() + ": " + myStudent.getFamilyName() + ", " + myStudent.getName() + "; " + myStudent.getAge());
+            System.out.println(myStudent);
         }
-
-
-
 
     }
 }

@@ -1,8 +1,5 @@
 package lecture.chapter9;
 
-import lecture.chapter5.Student;
-import lecture.chapter6.Bird;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -54,6 +51,5 @@ public class ListExample {
         System.out.println("Anzahl Elemente: " + myNameList.size());
         myNameList.clear();
         System.out.println("Anzahl Elemente: " + myNameList.size());
-
     }
 }
