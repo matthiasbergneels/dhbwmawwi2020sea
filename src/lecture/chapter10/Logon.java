@@ -1,6 +1,8 @@
 package lecture.chapter10;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 
 import javax.swing.*;
@@ -10,11 +12,14 @@ import javax.swing.text.MaskFormatter;
 
 public class Logon extends JFrame{
 
+    final String ACTION_COMMAND_OK = "OK_COMMAND";
+    final String ACTION_COMMAND_CANCEL = "CANCEL_COMMAND";
+
     public Logon() throws ParseException{
         this.setTitle("Logon");
 
-        final String[] PROTOCOL_VALUE_HELP = {"FTP", "Telnet", "SMTP", "HTTP"};
-        JComboBox<String> myComboBox = new JComboBox<>(PROTOCOL_VALUE_HELP);
+        final Object[] PROTOCOL_VALUE_HELP = {"FTP", "Telnet", "SMTP", "HTTP"};
+        JComboBox myComboBox = new JComboBox(PROTOCOL_VALUE_HELP);
 
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
@@ -78,8 +83,26 @@ public class Logon extends JFrame{
         filePanel.add(flowLayoutForCell);
 
         // create & assign Buttons
-        JButton okButton = new JButton("Okay");
-        JButton cancelButton = new JButton("Cancel");
+        JButton okButton = new JButton("Ausgeben");
+        okButton.setActionCommand(ACTION_COMMAND_OK);
+        JButton cancelButton = new JButton("Schliessen");
+        cancelButton.setActionCommand(ACTION_COMMAND_CANCEL);
+
+        ActionListener buttonListener = (ActionEvent event)->{
+            System.out.println("Action Command: " + event.getActionCommand());
+            System.out.println("Modifiers: "+event.getModifiers());
+            System.out.println("Parameter String: "+ event.paramString());
+
+            if(event.getActionCommand().equals(ACTION_COMMAND_OK)){
+                System.out.println("Ausgabe von Port: " + portField.getText());
+                portField.setText("21");
+            }else if(event.getActionCommand().equals(ACTION_COMMAND_CANCEL)){
+                System.exit(0);
+            }
+        };
+
+        okButton.addActionListener(buttonListener);
+        cancelButton.addActionListener(buttonListener);
 
         southPanel.add(okButton);
         southPanel.add(cancelButton);
@@ -101,7 +124,7 @@ public class Logon extends JFrame{
         mainPanel.add(centerPanel, BorderLayout.CENTER);
         mainPanel.add(southPanel, BorderLayout.SOUTH);
 
-        this.setContentPane(mainPanel);
+        this.add(mainPanel);
 
         // set JFrame behavior
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -112,7 +135,9 @@ public class Logon extends JFrame{
     public static void main(String[] args) throws ParseException {
         GraphicsDevice defaultScreenDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
-        System.out.println("Screen Dimension: " + defaultScreenDevice.getDisplayMode().getWidth() + " x " + defaultScreenDevice.getDisplayMode().getHeight());
+        System.out.println(String.format("Screen Dimension: %.0f x %.0f",
+                                        defaultScreenDevice.getDefaultConfiguration().getBounds().getWidth(),
+                                        defaultScreenDevice.getDefaultConfiguration().getBounds().getHeight()));
 
         new Logon();
     }
