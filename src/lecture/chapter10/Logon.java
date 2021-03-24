@@ -1,10 +1,7 @@
 package lecture.chapter10;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.text.ParseException;
 
 import javax.swing.*;
@@ -149,6 +146,62 @@ public class Logon extends JFrame{
 
         this.add(mainPanel);
 
+        MouseListener buttonMouseListener = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                ((JButton)e.getSource()).setEnabled(false);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                ((JButton)e.getSource()).setEnabled(true);
+            }
+        };
+
+        cancelButton.addMouseListener(buttonMouseListener);
+
+
+        JMenuBar myMenuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("Datei");
+
+        JMenuItem closeMenuItem = new JMenuItem("Beenden");
+        closeMenuItem.setActionCommand(ACTION_COMMAND_CANCEL);
+        closeMenuItem.addActionListener(buttonListener);
+
+
+        fileMenu.add(closeMenuItem);
+        myMenuBar.add(fileMenu);
+
+        JMenu windowSetupMenu = new JMenu("Fenster");
+        JMenuItem monitorOneItem = new JMenuItem("Monitor 1");
+        JMenuItem monitorTwoItem = new JMenuItem("Monitor 2");
+        JMenuItem maximizeItem = new JMenuItem("Maximieren");
+
+        windowSetupMenu.add(monitorOneItem);
+        windowSetupMenu.add(monitorTwoItem);
+        windowSetupMenu.addSeparator();
+        windowSetupMenu.add(maximizeItem);
+
+        myMenuBar.add(windowSetupMenu);
+
+        this.setJMenuBar(myMenuBar);
+
         // set JFrame behavior
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.pack();
@@ -163,5 +216,17 @@ public class Logon extends JFrame{
                                         defaultScreenDevice.getDefaultConfiguration().getBounds().getHeight()));
 
         new Logon();
+
+
+        GraphicsEnvironment virtualGraphicsEvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] screens = virtualGraphicsEvironment.getScreenDevices();
+
+        for(GraphicsDevice screen : screens){
+            System.out.println(screen);
+            System.out.println(screen.getDefaultConfiguration());
+            System.out.println(screen.getDefaultConfiguration().getBounds());
+            System.out.println(screen.getDefaultConfiguration().getBounds().getWidth() + " x " + screen.getDefaultConfiguration().getBounds().getHeight());
+            System.out.println(screen.getDefaultConfiguration().getBounds().getX() + " / " + screen.getDefaultConfiguration().getBounds().getY());
+        }
     }
 }
