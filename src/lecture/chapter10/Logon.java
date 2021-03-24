@@ -3,6 +3,8 @@ package lecture.chapter10;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.ParseException;
 
 import javax.swing.*;
@@ -21,6 +23,30 @@ public class Logon extends JFrame{
         final Object[] PROTOCOL_VALUE_HELP = {"FTP", "Telnet", "SMTP", "HTTP"};
         JComboBox myComboBox = new JComboBox(PROTOCOL_VALUE_HELP);
 
+        JFormattedTextField portField = new JFormattedTextField(new MaskFormatter("#####"));
+        portField.setColumns(3);
+
+        myComboBox.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                System.out.println("Item: "+e.getItem());
+                System.out.println("Parameter String: "+e.paramString());
+                System.out.println("State Change: "+e.getStateChange());
+                JComboBox eventComboBox = (JComboBox)e.getSource();
+
+                if(e.getStateChange() == ItemEvent.SELECTED){
+                    System.out.println("Neu selektiert: " + e.getItem());
+                    System.out.println(eventComboBox.getSelectedItem());
+
+                    if(e.getItem().equals("HTTP")){
+                        portField.setText("80");
+                    }else if(e.getItem().equals("FTP")){
+                        portField.setText("21");
+                    }
+                }
+            }
+        });
+
         // initialize Panels
         JPanel mainPanel = new JPanel(new BorderLayout());
 
@@ -29,9 +55,6 @@ public class Logon extends JFrame{
 
         JPanel connectionPanel = new JPanel(new GridLayout(0, 2));
         JPanel filePanel = new JPanel(new GridLayout(0, 2));
-
-        JFormattedTextField portField = new JFormattedTextField(new MaskFormatter("#####"));
-        portField.setColumns(3);
 
         FlowLayout cellFlowLayout = new FlowLayout(FlowLayout.LEFT);
 
