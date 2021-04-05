@@ -7,10 +7,9 @@ import java.text.ParseException;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
-import javax.swing.event.SwingPropertyChangeSupport;
 import javax.swing.text.MaskFormatter;
 
-public class Logon extends JFrame{
+public class Logon extends JFrame {
 
     private final String ACTION_COMMAND_OK = "OK_COMMAND";
     private final String ACTION_COMMAND_CANCEL = "CANCEL_COMMAND";
@@ -30,18 +29,18 @@ public class Logon extends JFrame{
         myComboBox.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                System.out.println("Item: "+e.getItem());
-                System.out.println("Parameter String: "+e.paramString());
-                System.out.println("State Change: "+e.getStateChange());
+                System.out.println("Item: " + e.getItem());
+                System.out.println("Parameter String: " + e.paramString());
+                System.out.println("State Change: " + e.getStateChange());
                 JComboBox eventComboBox = (JComboBox)e.getSource();
 
-                if(e.getStateChange() == ItemEvent.SELECTED){
+                if(e.getStateChange() == ItemEvent.SELECTED) {
                     System.out.println("Neu selektiert: " + e.getItem());
                     System.out.println(eventComboBox.getSelectedItem());
 
-                    if(e.getItem().equals("HTTP")){
+                    if(e.getItem().equals("HTTP")) {
                         portField.setText("80");
-                    }else if(e.getItem().equals("FTP")){
+                    }else if(e.getItem().equals("FTP")) {
                         portField.setText("21");
                     }
                 }
@@ -285,7 +284,7 @@ public class Logon extends JFrame{
     }
 
     class MonitorDescriptor{
-        private GraphicsDevice screen;
+        private final GraphicsDevice screen;
         private Point locationPoint;
         private String actionCommand;
         private String label;

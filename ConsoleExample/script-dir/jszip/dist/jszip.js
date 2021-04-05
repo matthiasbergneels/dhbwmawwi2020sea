@@ -4838,7 +4838,7 @@ module.exports = pako;
 var zlib_deflate = require('./zlib/deflate');
 var utils        = require('./utils/common');
 var strings      = require('./utils/strings');
-var msg          = require('./zlib/messages');
+var msg          = require('./zlib/messages.properties');
 var ZStream      = require('./zlib/zstream');
 
 var toString = Object.prototype.toString;
@@ -5241,7 +5241,7 @@ var zlib_inflate = require('./zlib/inflate');
 var utils        = require('./utils/common');
 var strings      = require('./utils/strings');
 var c            = require('./zlib/constants');
-var msg          = require('./zlib/messages');
+var msg          = require('./zlib/messages.properties');
 var ZStream      = require('./zlib/zstream');
 var GZheader     = require('./zlib/gzheader');
 
@@ -6154,7 +6154,7 @@ var utils   = require('../utils/common');
 var trees   = require('./trees');
 var adler32 = require('./adler32');
 var crc32   = require('./crc32');
-var msg     = require('./messages');
+var msg     = require('./messages.properties');
 
 /* Public constants ==========================================================*/
 /* ===========================================================================*/
