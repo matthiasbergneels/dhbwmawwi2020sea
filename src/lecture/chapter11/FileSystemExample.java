@@ -1,9 +1,6 @@
-package excercises.chapter11;
+package lecture.chapter11;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Set;
@@ -161,8 +158,43 @@ public class FileSystemExample {
             System.out.println(line);
         }
 
+        File myTextFile = new File(System.getProperty("user.dir") + File.separator + "myTextFile.txt");
+
+        if(!myTextFile.exists()){
+            try{
+            myTextFile.createNewFile();
+            }catch (IOException e){
+                System.out.println("Fehler beim Anlegen der Textdatei.");
+            }
+        }
+
+        try (FileWriter myTextFileWriter = new FileWriter(myTextFile);) {
+
+            for(String line : inputTextList){
+                myTextFileWriter.write(line + "\n");
+            }
+        }catch(IOException e){
+            System.out.println("Fehler beim öffnen der Datei.");
+        }
 
 
+        System.out.println("Auslesen aus Datei");
+        System.out.println("=====================================");
+
+        try(FileReader myTextFileReader = new FileReader(myTextFile);
+            BufferedReader myTextFileBufferedReader = new BufferedReader(myTextFileReader)){
+
+            String line;
+
+            while((line = myTextFileBufferedReader.readLine()) != null){
+                System.out.println(line);
+            }
+
+        }catch(FileNotFoundException e){
+            System.out.println("Datei nicht gefunden.");
+        }catch(IOException e){
+            System.out.println("Fehler beim lesen / schliessen der Datei.");
+        }
     }
 
     private static void listDirectoryAndContent(File currentDirectory, int indentation){
