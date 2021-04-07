@@ -1,11 +1,7 @@
 package lecture.chapter11;
 
-import javax.imageio.IIOException;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class FileSystemExample {
 
@@ -25,7 +21,13 @@ public class FileSystemExample {
 
 
         // System Properties
-        System.getProperties().list(System.out);
+        //System.getProperties().list(System.out);
+        Properties systemProperties = System.getProperties();
+
+        Set systemPropertiesKeys = systemProperties.keySet();
+        for(Object propertyKey : systemPropertiesKeys ){
+            System.out.println(propertyKey + ": " + System.getProperty((String)propertyKey));
+        }
 
         // Rekursive Ausgabe von Ordner und deren Inhalten
         System.out.println(System.getProperty("user.dir"));
@@ -141,8 +143,9 @@ public class FileSystemExample {
 
                 while (true){
                     buffer = renameFileInputStream.read(cache, i, CACHE_SIZE);
-                    if (buffer == -1)
+                    if (buffer == -1) {
                         break;
+                    }
                     targetCopyFileOutputStream.write(cache, i, CACHE_SIZE);
                 }
 
