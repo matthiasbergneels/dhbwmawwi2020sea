@@ -1,6 +1,10 @@
 package excercises.chapter11;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Set;
 
@@ -45,6 +49,118 @@ public class FileSystemExample {
         System.out.println("=====================================");
 
         listDirectoryAndContent(userDir, 0);
+
+
+        System.out.println("Umgang mit Verzeichnissen und Dateien");
+        System.out.println("=====================================");
+
+        System.out.println(System.getProperty("user.dir") + File.separator + "myDirectory");
+        File myDirectory = new File(System.getProperty("user.dir") + File.separator + "myDirectory");
+        File myRenameDirectory = new File(System.getProperty("user.dir") + File.separator + "myRenamedDirectory");
+
+
+        // anlegen von Verzeichnissen
+        if(!myDirectory.exists()){
+            myDirectory.mkdir();
+            System.out.println("Verzeichnis " + myDirectory.getPath() + " angelegt.");
+            System.out.println(myDirectory.getPath() + ": " + myDirectory.exists());
+            System.out.println(myRenameDirectory.getPath() + ": " + myRenameDirectory.exists());
+        }
+
+        // umbennenen von Verzeichnissen
+        if(myDirectory.exists() && !myRenameDirectory.exists()){
+            myDirectory.renameTo(myRenameDirectory);
+            System.out.println("Verzeichnis " + myDirectory.getPath() + " umbenennat in " + myRenameDirectory.getPath());
+            System.out.println(myDirectory.getPath() + ": " + myDirectory.exists());
+            System.out.println(myRenameDirectory.getPath() + ": " + myRenameDirectory.exists());
+        }
+
+        // Umgang mit Dateien
+        File myFile = new File(myRenameDirectory.getPath() + File.separator + "myFile.txt");
+        File myRenamedFile = new File(myRenameDirectory.getPath() + File.separator + "myRenamedFile.txt");
+
+        // Datei anlegen
+        if(!myFile.exists()){
+            try{
+                myFile.createNewFile();
+                System.out.println("Datei " + myFile.getName() + " angelegt");
+                System.out.println(myFile.getPath() + ": " + myFile.exists());
+                System.out.println(myRenamedFile.getPath() + ": " + myRenamedFile.exists());
+            }catch (IOException e){
+                System.out.println("Datei anlegen ist schief gegangen!");
+            }
+        }
+
+        // umbenennen von Dateien
+        if(myFile.exists() && !myRenamedFile.exists()){
+
+            myFile.renameTo(myRenamedFile);
+            System.out.println("Datei " + myFile.getName() + " umbenennat in " + myRenamedFile.getName());
+            System.out.println(myFile.getPath() + ": " + myFile.exists());
+            System.out.println(myRenamedFile.getPath() + ": " + myRenamedFile.exists());
+        }
+
+        // löschen von Dateien
+        if(myRenamedFile.exists()){
+            myRenamedFile.delete();
+            System.out.println("Datei " + myRenamedFile.getName() + " geleöscht");
+            System.out.println(myFile.getPath() + ": " + myFile.exists());
+            System.out.println(myRenamedFile.getPath() + ": " + myRenamedFile.exists());
+        }
+
+        // löschen von Verzeichnissen
+        if(myRenameDirectory.exists()){
+            myRenameDirectory.delete();
+            System.out.println("Verzeichnis " + myRenameDirectory.getPath() + " wurde gelöscht.");
+            System.out.println(myDirectory.getPath() + ": " + myDirectory.exists());
+            System.out.println(myRenameDirectory.getPath() + ": " + myRenameDirectory.exists());
+        }
+
+
+        System.out.println("Einlesen von Daten über System.in (Bytes)");
+        System.out.println("=====================================");
+
+        byte[] input = new byte[255];
+
+        System.out.print("Geben Sie einen Text ein: ");
+
+        try {
+            System.in.read(input, 0, 255);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(input);
+        System.out.println(new String(input) + "!");
+
+        System.out.println("Einlesen von Daten über System.in (Char)");
+        System.out.println("=====================================");
+
+        InputStreamReader systemIn = new InputStreamReader(System.in);
+        BufferedReader systemInReader = new BufferedReader(systemIn);
+
+        ArrayList<String> inputTextList = new ArrayList<>();
+        String inputText = "";
+
+        System.out.println("Bitte geben Sie einen Text ein (Beenden mit exit):");
+
+        while(true){
+            try {
+                inputText = systemInReader.readLine();
+                if(inputText.equalsIgnoreCase("exit")){
+                    break;
+                }
+                inputTextList.add(inputText);
+            }catch (IOException e){
+                System.out.println("Fehler bei der Eingabe über Konsole.");
+            }
+        }
+
+        System.out.println("Eingebener Text:");
+        for(String line : inputTextList){
+            System.out.println(line);
+        }
+
 
 
     }
