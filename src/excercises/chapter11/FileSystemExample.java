@@ -42,12 +42,39 @@ public class FileSystemExample {
         System.out.println("Berechtigungen:  " + (userDir.canRead() ? "r" : "-") + " / " + (userDir.canWrite() ? "w" : "-"));
 
         System.out.println("Inhalt von " + userDir.getName() + ":");
+        System.out.println("=====================================");
 
+        listDirectoryAndContent(userDir, 0);
 
 
     }
 
-    private static void listDirectoryAndContent(File currentDirectory){
-        
+    private static void listDirectoryAndContent(File currentDirectory, int indentation){
+        printlnWithIndentation("+" + currentDirectory.getName() +" - "
+                                    + (currentDirectory.canRead() ? "Lesezugriff" : "Kein Lesezugriff") + "; "
+                                    +(currentDirectory.canWrite() ? "Schreibzugriff" : "Kein Schreibzugriff"), indentation );
+
+        File[] currentDirectoryContent = currentDirectory.listFiles();
+        for(File currentFile : currentDirectoryContent){
+            if(currentFile.isDirectory()){
+                listDirectoryAndContent(currentFile, indentation+1);
+            }else if(currentFile.isFile()){
+                printlnWithIndentation("-" + currentFile.getName()
+                                        + " - "+ (currentFile.canRead() ? "Lesezugriff" : "Kein Lesezugriff") + "; "
+                                        +(currentFile.canWrite() ? "Schreibzugriff" : "Kein Schreibzugriff") + "; "
+                                        + currentFile.length() + " Byte", indentation+1 );
+            }
+        }
+
     }
+
+    private static void printlnWithIndentation(String txt, int indentation){
+        String indentationText = "";
+        for(int i = 0; i < indentation; i++){
+            indentationText += "\t";
+        }
+
+        System.out.println(indentationText + txt);
+    }
+
 }
