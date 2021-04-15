@@ -1,11 +1,32 @@
 package excercises.chapter10.meldeamt;
 
-public class Einwohner implements Comparable<Einwohner>{
+import java.io.Serializable;
+import java.util.ResourceBundle;
 
+public class Einwohner implements Comparable<Einwohner>, Serializable {
 
-    public static final String ANREDE_FRAU = "Frau";
-    public static final String ANREDE_HERR = "Herr";
-    public static final String ANREDE_DIVERS = "DIVERS";
+    public static final long serialVersionUID = 2L;
+
+    private static final String RESSOURCE_IDENTIFIER_UILABELS = "excercises.chapter10.meldeamt.i18n.uilabels";
+
+    enum Title {
+        MRS, MR, DIVERS;
+
+        @Override
+        public String toString() {
+            ResourceBundle uiLabelBundle = ResourceBundle.getBundle(RESSOURCE_IDENTIFIER_UILABELS);
+            switch (this){
+                case MR:
+                    return uiLabelBundle.getString("valuehelp_title_mr");
+                case MRS:
+                    return uiLabelBundle.getString("valuehelp_title_mrs");
+                case DIVERS:
+                    return uiLabelBundle.getString("valuehelp_title_divers");
+            }
+            return null;
+        }
+    }
+
 
     public static final String FAMILIENSTAND_LEDIG = "ledig";
     public static final String FAMILIENSTAND_VERHEIRATET = "verheiratet";
@@ -17,11 +38,11 @@ public class Einwohner implements Comparable<Einwohner>{
     private String vorname;
     private String gebName;
     private String email;
-    private String anrede;
+    private Title anrede;
     private String familienstand;
 
 
-    public Einwohner (String name, String vorname, String gebName, String email, String anrede, String familienstand){
+    public Einwohner (String name, String vorname, String gebName, String email, Title anrede, String familienstand){
         this.setName(name);
         this.setVorname(vorname);
         this.setGebName(gebName);
@@ -102,11 +123,11 @@ public class Einwohner implements Comparable<Einwohner>{
         this.email = email;
     }
 
-    public String getAnrede() {
+    public Title getAnrede() {
         return anrede;
     }
 
-    public void setAnrede(String anrede) {
+    public void setAnrede(Title anrede) {
         this.anrede = anrede;
     }
 

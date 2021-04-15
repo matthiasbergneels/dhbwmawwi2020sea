@@ -4,10 +4,13 @@ import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class MeldeamtUI extends JFrame {
+
+    private static final String RESSOURCE_IDENTIFIER_UILABELS = "excercises.chapter10.meldeamt.i18n.uilabels";
 
     private static final String ACTION_ADD = "ADD";
     private static final String ACTION_SHOW = "SHOW";
@@ -15,9 +18,11 @@ public class MeldeamtUI extends JFrame {
     private static final String ACTION_DELETE = "DELETE";
     private static final String ACTION_SHOWLIST = "SHOWLIST";
     private static final String ACTION_CLOSE = "CLOSE";
+    private static final String ACTION_LANGUAGE_DE = "ACTION_LANGUAGE_DE";
+    private static final String ACTION_LANGUAGE_EN = "ACTION_LANGUAGE_EN";
 
     private JLabel lblNotifications;
-    private JComboBox<String> cbbTitle;
+    private JComboBox<Einwohner.Title> cbbTitle;
     private JTextField tfName;
     private JTextField tfVorname;
     private JTextField tfGebName;
@@ -26,23 +31,29 @@ public class MeldeamtUI extends JFrame {
 
     private String currentMaritalStatus = Einwohner.FAMILIENSTAND_VERHEIRATET;
 
-    public MeldeamtUI(String title) {
-        super(title);
+    public MeldeamtUI(Locale locale) {
+        super();
 
+        // Internationalisierung
+        if(locale != null){
+            Locale.setDefault(locale);
+        }
+
+        ResourceBundle uiLabelBundle = ResourceBundle.getBundle(RESSOURCE_IDENTIFIER_UILABELS);
+
+        this.setTitle(uiLabelBundle.getString("frametitle"));
         this.setLayout(new BorderLayout());
 
         // ActionListener - Buttons
-        ActionListener btnListener = new ActionListener() {
+        ActionListener btnListener = (ActionEvent e) -> {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
                 String action = e.getActionCommand();
                 if (action.equals(ACTION_ADD)) {
 
                     boolean erg = ListenOperationen
                             .hinzufuegen(tfName.getText(), tfVorname.getText(),
                                     tfGebName.getText(), tfEmail.getText(),
-                                    cbbTitle.getSelectedItem().toString(),
+                                    (Einwohner.Title)cbbTitle.getSelectedItem(),
                                     currentMaritalStatus);
                     if (erg) {
                         lblNotifications.setText("Einwohner "
@@ -86,11 +97,17 @@ public class MeldeamtUI extends JFrame {
                 } else if (action.equals(ACTION_SHOWLIST)) {
                     ListenOperationen.listeAusgeben();
                 } else if (action.equals(ACTION_CLOSE)) {
+                    ListenOperationen.speichernEinwohnerListeInDatei();
                     System.exit(0);
+                }else if(action.equals(ACTION_LANGUAGE_DE)){
+                    ListenOperationen.speichernEinwohnerListeInDatei();
+                    this.dispose();
+                    new MeldeamtUI(new Locale("de"));
+                }else if(action.equals(ACTION_LANGUAGE_EN)){
+                    ListenOperationen.speichernEinwohnerListeInDatei();
+                    this.dispose();
+                    new MeldeamtUI(new Locale("en"));
                 }
-
-
-            }
         };
 
         // Action Listener - RadioButtonGroup Familienstand
@@ -139,13 +156,13 @@ public class MeldeamtUI extends JFrame {
         // Kontaktdaten
         JPanel contactDataPanel = new JPanel(new GridLayout(0, 2));
         Border contactEtchedBorder = BorderFactory.createTitledBorder(
-                etchedBorder, "Kontaktdaten");
+                etchedBorder, uiLabelBundle.getString("frametitle_adress"));
         contactDataPanel.setBorder(contactEtchedBorder);
         centerPanel.add(contactDataPanel);
 
-        String[] titleValues = { Einwohner.ANREDE_FRAU, Einwohner.ANREDE_HERR, Einwohner.ANREDE_DIVERS };
+        Einwohner.Title[] titleValues = {Einwohner.Title.MRS, Einwohner.Title.MR, Einwohner.Title.DIVERS};
 
-        cbbTitle = new JComboBox<String>(titleValues);
+        cbbTitle = new JComboBox<Einwohner.Title>(titleValues);
         tfName = new JTextField(20);
         tfName.setText("Mustermann");
         tfVorname = new JTextField(20);
@@ -155,23 +172,23 @@ public class MeldeamtUI extends JFrame {
         tfEmail = new JTextField(20);
         tfEmail.setText("mimi.mustermann@email.de");
 
-        contactDataPanel.add(new JLabel("Anrede:"));
+        contactDataPanel.add(new JLabel(uiLabelBundle.getString("label_title")+":"));
         cbbTitle.setToolTipText("Anrede auswählen");
         contactDataPanel.add(cbbTitle);
-        contactDataPanel.add(new JLabel("Name:"));
+        contactDataPanel.add(new JLabel(uiLabelBundle.getString("label_name")+":"));
         tfName.setToolTipText("Nachname eingeben - z.B. \"Mustermann\"");
         contactDataPanel.add(tfName);
-        contactDataPanel.add(new JLabel("Vorname:"));
+        contactDataPanel.add(new JLabel(uiLabelBundle.getString("label_firstname")+":"));
         contactDataPanel.add(tfVorname);
-        contactDataPanel.add(new JLabel("Geburtsname:"));
+        contactDataPanel.add(new JLabel(uiLabelBundle.getString("label_birthname")+":"));
         contactDataPanel.add(tfGebName);
-        contactDataPanel.add(new JLabel("E-Mail:"));
+        contactDataPanel.add(new JLabel(uiLabelBundle.getString("label_email")+":"));
         contactDataPanel.add(tfEmail);
 
         // Familienstand
         JPanel maritalStatusPanel = new JPanel(new GridLayout(0, 1));
         Border maritalEtchedBorder = BorderFactory.createTitledBorder(
-                etchedBorder, "Familienstand");
+                etchedBorder, uiLabelBundle.getString("frametitle_familystatus"));
         maritalStatusPanel.setBorder(maritalEtchedBorder);
         centerPanel.add(maritalStatusPanel);
 
@@ -201,23 +218,23 @@ public class MeldeamtUI extends JFrame {
 
         // South Panel - Leiste für Buttons
 
-        JButton btnAdd = new JButton("Hinzufügen");
+        JButton btnAdd = new JButton(uiLabelBundle.getString("btn_add"));
         btnAdd.setActionCommand(ACTION_ADD);
         btnAdd.addActionListener(btnListener);
 
-        JButton btnShow = new JButton("Anzeigen");
+        JButton btnShow = new JButton(uiLabelBundle.getString("btn_show"));
         btnShow.setActionCommand(ACTION_SHOW);
         btnShow.addActionListener(btnListener);
 
-        JButton btnSearch = new JButton("Suchen");
+        JButton btnSearch = new JButton(uiLabelBundle.getString("btn_search"));
         btnSearch.setActionCommand(ACTION_SEARCH);
         btnSearch.addActionListener(btnListener);
 
-        JButton btnDelete = new JButton("Löschen");
+        JButton btnDelete = new JButton(uiLabelBundle.getString("btn_delete"));
         btnDelete.setActionCommand(ACTION_DELETE);
         btnDelete.addActionListener(btnListener);
 
-        JButton btnShowList = new JButton("Liste Anzeigen");
+        JButton btnShowList = new JButton(uiLabelBundle.getString("btn_showlist"));
         btnShowList.setActionCommand(ACTION_SHOWLIST);
         btnShowList.addActionListener(btnListener);
 
@@ -230,50 +247,100 @@ public class MeldeamtUI extends JFrame {
 
 
 
-        JMenuItem menuItemAdd = new JMenuItem("Hinzufügen");
+        JMenuItem menuItemAdd = new JMenuItem(uiLabelBundle.getString("btn_add"));
         menuItemAdd.setActionCommand(ACTION_ADD);
         menuItemAdd.addActionListener(btnListener);
 
-        JMenuItem menuItemDelete = new JMenuItem("Löschen");
+        JMenuItem menuItemDelete = new JMenuItem(uiLabelBundle.getString("btn_delete"));
         menuItemDelete.setActionCommand(ACTION_DELETE);
         menuItemDelete.addActionListener(btnListener);
 
-        JMenuItem menuItemClose = new JMenuItem("Schliessen");
+        JMenuItem menuItemClose = new JMenuItem(uiLabelBundle.getString("btn_close"));
         menuItemClose.setActionCommand(ACTION_CLOSE);
         menuItemClose.addActionListener(btnListener);
 
-        JMenu general = new JMenu("Allgemein");
+        JMenu general = new JMenu(uiLabelBundle.getString("menu_common"));
         general.add(menuItemAdd);
         general.add(menuItemDelete);
         general.addSeparator();
         general.add(menuItemClose);
 
 
-        JMenuItem menuItemSearch = new JMenuItem("Suchen");
+        JMenuItem menuItemSearch = new JMenuItem(uiLabelBundle.getString("btn_search"));
         menuItemSearch.setActionCommand(ACTION_SEARCH);
         menuItemSearch.addActionListener(btnListener);
 
-        JMenuItem menuItemShowList = new JMenuItem("Liste augeben");
+        JMenuItem menuItemShowList = new JMenuItem(uiLabelBundle.getString("btn_showlist"));
         menuItemShowList.setActionCommand(ACTION_SHOWLIST);
         menuItemShowList.addActionListener(btnListener);
 
-        JMenu listFunctions = new JMenu("Listenfunktionen");
+        JMenu listFunctions = new JMenu(uiLabelBundle.getString("menu_listfunctions"));
         listFunctions.add(menuItemSearch);
         listFunctions.add(menuItemShowList);
+
+        JMenuItem menuLanguageDe = new JMenuItem(uiLabelBundle.getString("btn_language_de"));
+        menuLanguageDe.setActionCommand(ACTION_LANGUAGE_DE);
+        menuLanguageDe.addActionListener(btnListener);
+
+        JMenuItem menuLanguageEn = new JMenuItem(uiLabelBundle.getString("btn_language_en"));
+        menuLanguageEn.setActionCommand(ACTION_LANGUAGE_EN);
+        menuLanguageEn.addActionListener(btnListener);
+
+        JMenu menuLanguage = new JMenu(uiLabelBundle.getString("menu_language"));
+        menuLanguage.add(menuLanguageDe);
+        menuLanguage.add(menuLanguageEn);
 
         JMenuBar menuBar = new JMenuBar();
         menuBar.add(general);
         menuBar.add(listFunctions);
+        menuBar.add(menuLanguage);
 
         this.setJMenuBar(menuBar);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.pack();
+
+        this.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+                ListenOperationen.ladenEinwohnerListeVonDatei();
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ListenOperationen.speichernEinwohnerListeInDatei();
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
     }
 
     public static void main(String[] args) {
         //Listenoperationen.readSetFromFile();
-        new MeldeamtUI("Einwohnermeldeamt");
+        new MeldeamtUI(null);
 
 
     }
