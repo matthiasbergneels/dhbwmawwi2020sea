@@ -16,5 +16,11 @@ public class BinaryTreeExample {
 
         System.out.println("Binary Tree befüllt!");
 
+        numberTree.printInOrder();
+
+        numberTree.printPreOrder();
+
+        numberTree.printPostOrder();
+
     }
 }
