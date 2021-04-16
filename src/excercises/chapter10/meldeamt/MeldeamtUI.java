@@ -96,9 +96,11 @@ public class MeldeamtUI extends JFrame {
                     }
                 } else if (action.equals(ACTION_SHOWLIST)) {
                     ListenOperationen.listeAusgeben();
+
                 } else if (action.equals(ACTION_CLOSE)) {
                     ListenOperationen.speichernEinwohnerListeInDatei();
                     System.exit(0);
+
                 }else if(action.equals(ACTION_LANGUAGE_DE)){
                     ListenOperationen.speichernEinwohnerListeInDatei();
                     this.dispose();
