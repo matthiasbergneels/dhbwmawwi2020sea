@@ -1,14 +1,17 @@
 package lecture.chapter12;
 
+import lecture.chapter11.Person;
+
 public class LinkedListExample {
 
     public static void main(String[] args) {
 
-        LinkedList myWordList = new LinkedList();
+        LinkedList<String> myWordList = new LinkedList<String>();
 
         myWordList.add("Hallo");
         myWordList.add("Klaus");
         myWordList.add("Hihihi");
+        // myWordList.add(new Person("", "")); --> Generic Typisierung
 
         System.out.println("Liste gefüllt!");
 

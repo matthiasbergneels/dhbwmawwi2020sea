@@ -1,12 +1,11 @@
 package lecture.chapter12;
 
-public class LinkedList {
+public class LinkedList<T> {
 
-    private Node firstNode;
+    private Node<T> firstNode;
 
-    public void add(Object data){
-        Node newNode = new Node(data);
-
+    public void add(T data){
+        Node<T> newNode = new Node<T>(data);
 
         if(firstNode == null){
             // Liste ist noch leer
@@ -14,7 +13,7 @@ public class LinkedList {
             return;
         }
 
-        Node currentNode = firstNode;
+        Node<T> currentNode = firstNode;
         while(currentNode.getNextNode() != null){
             currentNode = currentNode.getNextNode();
         }
@@ -22,14 +21,14 @@ public class LinkedList {
         currentNode.setNextNode(newNode);
     }
 
-    public boolean contains(Object data){
+    public boolean contains(T data){
 
         if(firstNode == null){
             // liste ist leer
             return false;
         }
 
-        Node currentNode = firstNode;
+        Node<T> currentNode = firstNode;
         if(currentNode.getData().equals(data)){
             return true;
         }
@@ -44,7 +43,7 @@ public class LinkedList {
     }
 
     // contains --> rekursiv
-    public boolean recursiveContains(Object data){
+    public boolean recursiveContains(T data){
         if(firstNode != null){
             return recursiveContains(data, firstNode);
         }
@@ -52,7 +51,7 @@ public class LinkedList {
         return false;
     }
 
-    private boolean recursiveContains(Object data, Node currentNode){
+    private boolean recursiveContains(T data, Node<T> currentNode){
         if(currentNode.getData().equals(data)){
             return true;
         }
@@ -65,7 +64,7 @@ public class LinkedList {
     }
 
     // remove Methode: public boolean remove(Object data)
-    public boolean remove(Object data){
+    public boolean remove(T data){
 
         if(firstNode != null){
 
@@ -74,7 +73,7 @@ public class LinkedList {
                 return true;
             }
 
-            Node currentNode = firstNode;
+            Node<T> currentNode = firstNode;
             while(currentNode.getNextNode() != null){
                 if(currentNode.getNextNode().getData().equals(data)){
                     currentNode.setNextNode(currentNode.getNextNode().getNextNode());
@@ -98,7 +97,7 @@ public class LinkedList {
 
     }
 
-    private void printList(Node currentNode){
+    private void printList(Node<T> currentNode){
         System.out.println("- " + currentNode.data);
         if(currentNode.getNextNode() != null){
             printList(currentNode.getNextNode());
@@ -107,12 +106,12 @@ public class LinkedList {
         }
     }
 
-    private class Node{
+    private class Node<D>{
 
-        private Object data;
+        private D data;
         private Node nextNode;
 
-        public Node(Object data){
+        public Node(D data){
             this.data = data;
             this.nextNode = null;
         }
@@ -125,7 +124,7 @@ public class LinkedList {
             return this.nextNode;
         }
 
-        public Object getData(){
+        public D getData(){
             return this.data;
         }
     }
