@@ -21,6 +21,5 @@ public class BinaryTreeExample {
         numberTree.printPreOrder();
 
         numberTree.printPostOrder();
-
     }
 }

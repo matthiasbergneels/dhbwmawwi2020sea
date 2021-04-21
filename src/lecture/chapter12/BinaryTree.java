@@ -69,7 +69,7 @@ public class BinaryTree<T> {
 
     // traversel
 
-    // inOrder
+    // inOrder - left-root-right
     public void printInOrder(){
         if(root == null){
             System.out.println("Baum ist leer");
@@ -91,7 +91,7 @@ public class BinaryTree<T> {
         }
     }
 
-    // preOrder
+    // preOrder - root-left-right
     public void printPreOrder(){
         if(root == null){
             System.out.println("Baum ist leer");
@@ -113,7 +113,7 @@ public class BinaryTree<T> {
         }
     }
 
-    // postOrder
+    // postOrder - left-right-root
     public void printPostOrder(){
         if(root == null){
             System.out.println("Baum ist leer");
