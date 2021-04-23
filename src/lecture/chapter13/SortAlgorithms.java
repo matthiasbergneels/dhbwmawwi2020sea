@@ -19,7 +19,13 @@ public class SortAlgorithms {
         System.out.println("Sortierte Zahlen - bubbleSortV3: ");
         printArray(sortedNumbers);
 
+        sortedNumbers = selectionSortNumberArray(unsortedNumbers.clone());
+        System.out.println("Sortierte Zahlen - selectionSort: ");
+        printArray(sortedNumbers);
 
+        sortedNumbers = quickSortNumberArray(unsortedNumbers.clone());
+        System.out.println("Sortierte Zahlen - quickSort: ");
+        printArray(sortedNumbers);
     }
 
     public static int[] bubbleSortNumberArrayV1(int numbers[]){
@@ -87,8 +93,71 @@ public class SortAlgorithms {
         return numbers;
     }
 
+    public static int[] quickSortNumberArray(int[] numbers){
+        long startTime = System.currentTimeMillis();
+
+        quickSortNumberArray(numbers, 0, numbers.length-1);
+
+        long duration = System.currentTimeMillis() - startTime;
+        System.out.println("QuickSort Duration: \t" + duration + "ms");
+        return numbers;
+    }
+
+    private static void quickSortNumberArray(int[] numbers, int left, int right){
+
+        int indexLeft = left;
+        int indexRight = right;
+
+        if(left < right){
+            int pivot = numbers[(indexLeft + indexRight) / 2];
+
+            while(indexLeft <= indexRight){
+                while(numbers[indexLeft] < pivot){
+                    indexLeft++;
+                }
+                while(numbers[indexRight] > pivot){
+                    indexRight--;
+                }
+                if(indexLeft <= indexRight){
+                    swap(numbers, indexLeft, indexRight);
+                    indexLeft++;
+                    indexRight--;
+                }
+            }
+
+            if(left < indexRight){
+                quickSortNumberArray(numbers, left, indexRight);
+            }
+            if(indexLeft < right){
+                quickSortNumberArray(numbers, indexLeft, right);
+            }
+
+        }
+
+    }
+
     public static int[] selectionSortNumberArray(int numbers[]){
 
+        long startTime = System.currentTimeMillis();
+
+        int sortedMarker = numbers.length - 1;
+
+        while(sortedMarker > 0){
+            int maxPos = 0;
+            for(int i = 0; i <= sortedMarker; i++){
+                if(numbers[i] > numbers[maxPos]){
+                    maxPos = i;
+                }
+            }
+
+            swap(numbers, maxPos, sortedMarker);
+
+            sortedMarker--;
+        }
+
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("SelectionSort Runtime: " + (endTime - startTime) + " ms");
 
         return numbers;
     }

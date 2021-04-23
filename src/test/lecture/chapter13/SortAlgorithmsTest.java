@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SortAlgorithmsTest {
 
-    static int count = 10000;
+    static int count = 100000;
     static int randomRange = 3000000;
     static int[] toSort = null;
 
@@ -39,6 +39,12 @@ class SortAlgorithmsTest {
     void selectionSortNumberArray() {
         int[] selectionSortedArray = SortAlgorithms.selectionSortNumberArray(toSort.clone());
         assertTrue(isSorted(selectionSortedArray));
+    }
+
+    @Test
+    void quickSortNumberArray() {
+        int[] quickSortedArray = SortAlgorithms.quickSortNumberArray(toSort.clone());
+        assertTrue(isSorted(quickSortedArray));
     }
 
     private static boolean isSorted(int[] array){
