@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SortAlgorithmsTest {
 
-    static int count = 20000;
+    static int count = 25000;
     static int randomRange = 3000000;
     static int[] toSort = null;
 
