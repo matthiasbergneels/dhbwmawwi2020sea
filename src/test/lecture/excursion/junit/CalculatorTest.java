@@ -69,7 +69,7 @@ class CalculatorTest {
             "10, 5, 5",
             "15.0, 8, 7",
             "18, 20, -2",
-            "100000000, -1, 100000002"
+            "100000000, -1, 100000001"
     })
     void parameterizedSubtract(double numberA, double numberB, double expectedResult){
         result = myCalculator.subtract(numberA, numberB);
