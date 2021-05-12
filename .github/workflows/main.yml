@@ -44,5 +44,6 @@ jobs:
         run: | 
           ls
           mkdir compiled
-          javac -d compiled -cp junit-platform-console-standalone-1.8.0-M1.jar ./src/**/*.java
+          find src -name "*.java" > sources.txt
+          javac -d compiled -cp junit-platform-console-standalone-1.8.0-M1.jar @sources.txt
           java -jar junit-platform-console-standalone-1.8.0-M1.jar --class-path compiled --scan-class-path
