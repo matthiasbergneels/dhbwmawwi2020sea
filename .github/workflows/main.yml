@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-java@v2.0.0
         with:
           # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
-          java-version: 16
+          java-version: 13
           # Java distribution. See the list of supported distributions in README file
           distribution: jdk
           
@@ -36,6 +36,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Run JUnit Testsuite
+        
+      # Load junit console starter
+      - name: Run a one-line script
+        run: curl -O https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.0-M1/junit-platform-console-standalone-1.8.0-M1.jar
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
