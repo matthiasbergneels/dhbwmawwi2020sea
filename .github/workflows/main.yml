@@ -7,12 +7,12 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
-      paths:
-      - 'src'
+    paths:
+    - 'src'
   pull_request:
     branches: [ main ]
-      paths:
-      - 'src'
+    paths:
+    - 'src'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,10 +34,6 @@ jobs:
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Run JUnit Testsuite
         
       # Load junit console starter
       - name: Download junit console starter
