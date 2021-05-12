@@ -31,7 +31,7 @@ jobs:
       - name: Setup Java JDK
         uses: actions/setup-java@v2.0.0
         with:
-          distribution: 'zulu' 
+          distribution: 'adopt' 
           java-version: ${{ matrix.Java }}
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
