@@ -1,0 +1,104 @@
+QuickSort Duration: 	4ms
+SelectionSort Runtime: 152 ms
+BubbleSort V1 Runtime: 567 ms
+BubbleSort V2 Runtime: 285 ms
+BubbleSort V3 Runtime: 327 ms
+Before Each outer class
+Before Each outer class
+Before Each outer class
+Before Each outer class
+Before Each outer class
+Before Each outer class
+Before Each outer class
+Before Each inner class
+Before Each outer class
+Before Each inner class
+Before Each outer class
+Before Each inner class
+
+Thanks for using JUnit! Support its development at https://junit.org/sponsoring
+
+[36m╷[0m
+[36m├─[0m [36mJUnit Jupiter[0m [32m✔[0m
+[36m│  ├─[0m [36mSortAlgorithmsTest[0m [32m✔[0m
+[36m│  │  ├─[0m [34mquickSortNumberArray()[0m [32m✔[0m
+[36m│  │  ├─[0m [34mselectionSortNumberArray()[0m [32m✔[0m
+[36m│  │  ├─[0m [34mbubbleSortNumberArrayV1()[0m [32m✔[0m
+[36m│  │  ├─[0m [34mbubbleSortNumberArrayV2()[0m [32m✔[0m
+[36m│  │  └─[0m [34mbubbleSortNumberArrayV3()[0m [32m✔[0m
+[36m│  ├─[0m [36mSiebDesEratosthenesTest[0m [32m✔[0m
+[36m│  │  ├─[0m [36mcheckForNotPrimzahlTest(int)[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34m4 should not be Primzahl[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34m6 should not be Primzahl[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34m8 should not be Primzahl[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34m9 should not be Primzahl[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34m10 should not be Primzahl[0m [32m✔[0m
+[36m│  │  │  └─[0m [34m12 should not be Primzahl[0m [32m✔[0m
+[36m│  │  ├─[0m [34mCheck Primzahlen calculation till 120[0m [32m✔[0m
+[36m│  │  └─[0m [36mcheckForPrimzahlTest(int)[0m [32m✔[0m
+[36m│  │     ├─[0m [34m0 should be Primzahl[0m [32m✔[0m
+[36m│  │     ├─[0m [34m1 should be Primzahl[0m [32m✔[0m
+[36m│  │     ├─[0m [34m2 should be Primzahl[0m [32m✔[0m
+[36m│  │     ├─[0m [34m3 should be Primzahl[0m [32m✔[0m
+[36m│  │     ├─[0m [34m5 should be Primzahl[0m [32m✔[0m
+[36m│  │     ├─[0m [34m7 should be Primzahl[0m [32m✔[0m
+[36m│  │     └─[0m [34m11 should be Primzahl[0m [32m✔[0m
+[36m│  ├─[0m [36mCalculator Test[0m [32m✔[0m
+[36m│  │  ├─[0m [34msubtract two numbers[0m [32m✔[0m
+[36m│  │  ├─[0m [36mparameterized Subtract[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34m10 minus 5 results 5[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34m15.0 minus 8 results 7[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34m18 minus 20 results -2[0m [32m✔[0m
+[36m│  │  │  └─[0m [34m100000000 minus -1 results 100000001[0m [32m✔[0m
+[36m│  │  ├─[0m [34mmultiply two numbers[0m [32m✔[0m
+[36m│  │  └─[0m [36madd-method Tests[0m [32m✔[0m
+[36m│  │     ├─[0m [34madding two large numbers[0m [32m✔[0m
+[36m│  │     ├─[0m [34madding two numbers with different result[0m [32m✔[0m
+[36m│  │     └─[0m [34madding two numbers[0m [32m✔[0m
+[36m│  ├─[0m [36mKundeTest[0m [32m✔[0m
+[36m│  │  ├─[0m [36mHashCodeTests[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34mhashCodeGenerateCustomer1()[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34mhashCodeSimilarCustomerDifferentObjects()[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34mhashCodeCompareSameObjects()[0m [32m✔[0m
+[36m│  │  │  └─[0m [34mhashCodecompareDifferentCustomers()[0m [32m✔[0m
+[36m│  │  ├─[0m [36mCompareToTests[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34mcompareSmallerWithBiggerCustomer()[0m [32m✔[0m
+[36m│  │  │  ├─[0m [34mcompareBiggerWithSmallerCustomer()[0m [32m✔[0m
+[36m│  │  │  └─[0m [34mcompareSimilarCustomers()[0m [32m✔[0m
+[36m│  │  └─[0m [36mEqualsTests[0m [32m✔[0m
+[36m│  │     ├─[0m [34mcompareDifferentCustomers()[0m [32m✔[0m
+[36m│  │     ├─[0m [34mcompareSameObjects()[0m [32m✔[0m
+[36m│  │     └─[0m [34mcompareSimilarCustomersDifferentObjects()[0m [32m✔[0m
+[36m│  ├─[0m [36mHeronTest[0m [32m✔[0m
+[36m│  │  └─[0m [36mSquare Root calculation with Heron[0m [32m✔[0m
+[36m│  │     ├─[0m [34mCalculate square root of 4.0 with precision of 0.0001[0m [32m✔[0m
+[36m│  │     ├─[0m [34mCalculate square root of 16.0 with precision of 0.0001[0m [32m✔[0m
+[36m│  │     ├─[0m [34mCalculate square root of 20.0 with precision of 0.0001[0m [32m✔[0m
+[36m│  │     └─[0m [34mCalculate square root of 121.0 with precision of 0.0001[0m [32m✔[0m
+[36m│  ├─[0m [36mHotelTest[0m [32m✔[0m
+[36m│  │  ├─[0m [34mbookSlotThrowsNotEnoughFreeSlotsExceptionWithLambdaFunction()[0m [32m✔[0m
+[36m│  │  ├─[0m [34mbookSlotThrowsNotEnoughFreeSlotsExceptionWithExternalClass()[0m [32m✔[0m
+[36m│  │  └─[0m [34mbookSlotThrowsNotEnoughFreeSlotsExceptionWithAnonymusClass()[0m [32m✔[0m
+[36m│  ├─[0m [36mNotEnoughFreeSlotsTest[0m [32m✔[0m
+[36m│  │  └─[0m [34mcreatNotEnoughFreeSlotsException()[0m [32m✔[0m
+[36m│  └─[0m [36mGgtTest[0m [32m✔[0m
+[36m│     └─[0m [36mCalculation of GGT[0m [32m✔[0m
+[36m│        ├─[0m [34mGGT of 6 and 2 should be 2[0m [32m✔[0m
+[36m│        ├─[0m [34mGGT of 10 and 3 should be 1[0m [32m✔[0m
+[36m│        └─[0m [34mGGT of 245 and 63 should be 7[0m [32m✔[0m
+[36m└─[0m [36mJUnit Vintage[0m [32m✔[0m
+
+Test run finished after 2179 ms
+[        19 containers found      ]
+[         0 containers skipped    ]
+[        19 containers started    ]
+[         0 containers aborted    ]
+[        19 containers successful ]
+[         0 containers failed     ]
+[        49 tests found           ]
+[         0 tests skipped         ]
+[        49 tests started         ]
+[         0 tests aborted         ]
+[        49 tests successful      ]
+[         0 tests failed          ]
+

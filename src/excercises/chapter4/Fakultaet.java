@@ -1,14 +1,14 @@
 package excercises.chapter4;
 
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 
 public class Fakultaet {
 
     public static void main(String[] args) {
 
-        String s = JOptionPane.showInputDialog("Geben Sie eine Zahl ein:");
-        int fakultaet = Integer.parseInt(s);
+        Scanner scanner = new Scanner(System.in);
+        int fakultaet = scanner.nextInt();
 
         int result = 1;
 
@@ -17,6 +17,7 @@ public class Fakultaet {
         }
 
         System.out.println("Fakultät von " + fakultaet + ": " + result);
+
 
 
         // Alternative
